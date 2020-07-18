@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rbody;
     private IsometricCharacterRenderer _isoRenderer;
     private float _timeSinceLastMove;
-    public float MoveDuration = 0.3f;
+    public float MoveDuration = 0.45f;
     private Vector2 _targetPosition;
     private Vector2 _prevPosition;
 
