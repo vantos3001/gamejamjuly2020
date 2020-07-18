@@ -17,11 +17,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!Input.GetMouseButton(0)) {
+            return;
+        }
         Vector2 currentPos = _rbody.position;
         Vector2 inputVector = new Vector2(1, 0.5f);
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         Vector2 movement = inputVector * 1;
-        Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+        Vector2 newPos = currentPos + movement * 0.1f;
         _isoRenderer.SetDirection(movement);
         _rbody.MovePosition(newPos);
     }
