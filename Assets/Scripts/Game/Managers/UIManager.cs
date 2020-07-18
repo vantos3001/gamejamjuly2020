@@ -21,6 +21,7 @@ public static class UIManager
     public static void Init()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        EventManager.OnAbilityLevelUp += OnAbilityLevelUp;
     }
 
     private static void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
@@ -31,10 +32,18 @@ public static class UIManager
         }
     }
 
+    private static void OnAbilityLevelUp(AbilityType abilityType)
+    {
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            UpdateMenu();
+        }
+    }
+
     private static void UpdateMenu()
     {
         var playerData = PlayerManager.PlayerData;
-        UpdateCoinPanel(playerData.CurrentCoin);
+        UpdateCoinPanel(playerData.CurrentCoins);
 
         foreach (var ability in playerData.Abilities)
         {

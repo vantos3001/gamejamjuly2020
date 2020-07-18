@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class AbilityPanel : MonoBehaviour
@@ -13,6 +11,11 @@ public class AbilityPanel : MonoBehaviour
     [SerializeField] private AbilityType _abilityType;
     public AbilityType AbilityType => _abilityType;
 
+    private void Awake()
+    {
+        _buyButton.ButtonClicked += OnButtonClicked;
+    }
+
     public void SetContent(Ability ability)
     {
         SetText(ability.Data.Value.ToString());
@@ -23,5 +26,15 @@ public class AbilityPanel : MonoBehaviour
     private void SetText(string text)
     {
         _abilityText.text = _textPrefix + text + _textPostfix;
+    }
+
+    private void OnButtonClicked()
+    {
+        BuyManager.TryUpgradeAbility(_abilityType);
+    }
+
+    private void OnDestroy()
+    {
+        _buyButton.ButtonClicked -= OnButtonClicked;
     }
 }

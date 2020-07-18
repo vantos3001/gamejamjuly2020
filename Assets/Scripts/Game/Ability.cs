@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum AbilityType
@@ -29,10 +27,10 @@ public class Ability
 
         _config = DataManager.GetAbilityConfig(_abilityType);
         
-        SetData();
+        UpdateData();
     }
 
-    private void SetData()
+    private void UpdateData()
     {
 
         if (_currentLevel < _config.AbilityDatas.Count)
@@ -43,6 +41,14 @@ public class Ability
         {
             Debug.LogError("Not found abilityData with type = " + _abilityType + "; level = " + _currentLevel);
         }
+    }
+
+    public void LevelUp()
+    {
+        if (IsMaxLevel) return;
+        
+        _currentLevel++;
+        UpdateData();
     }
 
 }
