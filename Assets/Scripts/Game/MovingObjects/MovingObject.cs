@@ -1,44 +1,49 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingObject : MonoBehaviour
-{
-    public float movementSpeed = 1f;
-    public float Mx =-0.5f;
-    public float My = 0.25f;
-    MovingObjectRenderer isoRenderer;
+namespace Game.MovingObjects {
+    public class MovingObject : MonoBehaviour
+    {
+        public float movementSpeed = 1f;
+        MovingObjectRenderer isoRenderer;
+
+        public enum Directions {
+            Left,
+            Right,
+            Forward,
+            Backward
+        }
     
-    public static Vector2 Left = new Vector2(-1f, 0.5f);
-    public static Vector2 Right = new Vector2(1f, -0.5f);
-    public static Vector2 Forward = new Vector2(1f, 0.5f);
-    public static Vector2 Backward = new Vector2(-1f, -0.5f);
+        private readonly Dictionary<Directions, Vector2> _directionsByName = new Dictionary<Directions, Vector2>() {
+            {Directions.Left, new Vector2(-1f, 0.5f)},
+            {Directions.Right, new Vector2(1f, -0.5f)},
+            {Directions.Forward, new Vector2(1f, 0.5f)},
+            {Directions.Backward, new Vector2(-1f, -0.5f)}
+        };
 
-    Rigidbody2D rbody;
-    private Vector2 _direction;
+        Rigidbody2D rbody;
+        private Vector2 _direction;
 
-    private void Awake()
-    {
-        rbody = GetComponent<Rigidbody2D>();
-        isoRenderer = GetComponentInChildren<MovingObjectRenderer>();
-        _direction = Left;
-    }
+        private void Awake()
+        {
+            rbody = GetComponent<Rigidbody2D>();
+            isoRenderer = GetComponentInChildren<MovingObjectRenderer>();
+            _directionsByName.TryGetValue(Directions.Left, out _direction);
+        }
 
-    public void SetDirection(Vector2 value) {
-        _direction = value;
-    }
+        public void SetDirection(Directions value) {
+            _directionsByName.TryGetValue(value, out _direction);
+        }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        Vector2 currentPos = rbody.position;
-        //float horizontalInput = Input.GetAxis("Horizontal");
-        //float verticalInput = Input.GetAxis("Vertical");
-        Vector2 inputVector = _direction;
-        inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        Vector2 movement = inputVector * movementSpeed;
-        Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
-        isoRenderer.SetDirection(movement);
-        rbody.MovePosition(newPos);
+        void FixedUpdate()
+        {
+            Vector2 currentPos = rbody.position;
+            Vector2 inputVector = _direction;
+            inputVector = Vector2.ClampMagnitude(inputVector, 1);
+            Vector2 movement = inputVector * movementSpeed;
+            Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+            isoRenderer.SetDirection(movement);
+            rbody.MovePosition(newPos);
+        }
     }
 }

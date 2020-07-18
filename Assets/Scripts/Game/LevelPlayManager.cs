@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.Map;
 using UnityEngine;
 
 public class LevelPlayManager : MonoBehaviour {
@@ -10,6 +11,7 @@ public class LevelPlayManager : MonoBehaviour {
 
     private readonly Dictionary<Operations, Func<bool>> _operationsByName = new Dictionary<Operations, Func<bool>>();
     private readonly Queue<Operations> _operationsQueue = new Queue<Operations>();
+    private MovingObjectsGenerator _movingObjGen;
 
     private enum Operations {
         Move
@@ -19,6 +21,7 @@ public class LevelPlayManager : MonoBehaviour {
         _operationsByName.Add(Operations.Move, Move);
         _playerMovement = GetComponent<PlayerMovement>();
         _mapGen = GetComponent<LevelMapGenerator>();
+        _movingObjGen = GetComponent<MovingObjectsGenerator>();
     }
 
     private bool Move() {
@@ -31,6 +34,10 @@ public class LevelPlayManager : MonoBehaviour {
     }
 
     private void Update() {
+        if (Input.GetMouseButtonUp(1)) {
+            _movingObjGen.GenerateObject(_playerMovement.transform.localPosition);
+        }
+        
         if (Input.GetMouseButtonUp(0)) {
             EnqueueOperation(Operations.Move);
         }
