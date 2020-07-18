@@ -8,4 +8,9 @@ public class UIBuyButton : MonoBehaviour
 {
     [SerializeField] private Button _button;
     [SerializeField] private TextMeshProUGUI _costText;
+
+    public void SetText(string text)
+    {
+        _costText.text = text;
+    }
 }

@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 6184982978864552324}
   m_Layer: 5
   m_Name: menu_canvas
-  m_TagString: Untagged
+  m_TagString: MenuCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -806,6 +806,11 @@ PrefabInstance:
       propertyPath: _textPrefix
       value: 'Max Health: '
       objectReference: {fileID: 0}
+    - target: {fileID: 8515360226021721857, guid: 3c395de588af74840a396f0e5997e2c7,
+        type: 3}
+      propertyPath: _textPostfix
+      value: s
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c395de588af74840a396f0e5997e2c7, type: 3}
 --- !u!224 &7872096063701485412 stripped
@@ -947,6 +952,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _textPrefix
       value: 'Click Time: '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8515360226021721857, guid: 3c395de588af74840a396f0e5997e2c7,
+        type: 3}
+      propertyPath: _textPostfix
+      value: s
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c395de588af74840a396f0e5997e2c7, type: 3}

@@ -11,6 +11,7 @@ public class GameStarter : MonoBehaviour
     private void Init()
     {
         PlayerManager.Init();
+        UIManager.Init();
         
         LoadMenu();
     }

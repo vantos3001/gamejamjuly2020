@@ -11,11 +11,17 @@ public enum AbilityType
 public class Ability
 {
     private AbilityType _abilityType;
+    public AbilityType AbilityType => _abilityType;
+
     private AbilityData _data;
+    public AbilityData Data => _data;
 
     private AbilityConfig _config;
 
     private int _currentLevel = 0;
+    private int MaxLevel => _config.AbilityDatas.Count - 1;
+    public bool IsMaxLevel => MaxLevel <= _currentLevel;
+    public AbilityData NextData => _config.AbilityDatas[_currentLevel + 1];
     
     public Ability(AbilityType abilityType)
     {

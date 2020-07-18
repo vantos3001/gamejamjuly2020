@@ -5,6 +5,7 @@ using UnityEngine;
 public static class PlayerManager
 {
     private static PlayerData _playerData;
+    public static PlayerData PlayerData => _playerData;
     
     public static void Init()
     {
