@@ -9,7 +9,7 @@ public class LevelMapGenerator : MonoBehaviour {
     private readonly List<MapLevel> _levels = new List<MapLevel>();
     private int _distance;
 
-    public void GenerateNew() {
+    public MapLevel GenerateNew() {
         var randomIndex = Random.Range(0, _levelTemplates.Length);
         var newLevel = Instantiate(_levelTemplates.ElementAt(randomIndex));
         var lastLevel = _levels.LastOrDefault();
@@ -17,17 +17,23 @@ public class LevelMapGenerator : MonoBehaviour {
         _distance += newLevel.GetSize().x;
         if (lastLevel is null) {
             newLevel.transform.localPosition = Vector3.zero;
-            return;
+            return newLevel;
         }
 
         var lastLevelSize = lastLevel.GetSize();
         newLevel.transform.localPosition =
             lastLevel.transform.localPosition + new Vector3(lastLevelSize.x * 0.5f, lastLevelSize.x * 0.25f, 0);
+        
+        return newLevel;
     }
 
-    public void TryGenerateNew(int distancePassed) {
+    public bool TryGenerateNew(int distancePassed, out MapLevel newLevel) {
         if (_distance < distancePassed + TilesBuffer) {
-            GenerateNew();
+            newLevel = GenerateNew();
+            return true;
         }
+
+        newLevel = null;
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Map;
+using Game.MovingObjects;
 using UnityEngine;
 
 public class LevelPlayManager : MonoBehaviour {
@@ -22,20 +23,28 @@ public class LevelPlayManager : MonoBehaviour {
         _playerMovement = GetComponent<PlayerMovement>();
         _mapGen = GetComponent<LevelMapGenerator>();
         _movingObjGen = GetComponent<MovingObjectsGenerator>();
+        _movingObjGen.SetPlayerTarget(_playerMovement.transform);
     }
 
     private bool Move() {
         var success = _playerMovement.MoveTo(_playerState.Distance + 1);
         if (success) {
             _playerState.Distance++;
-            _mapGen.TryGenerateNew(_playerState.Distance);
+            TryGenerateNewLevelPart();
         }
         return success;
     }
 
+    private void TryGenerateNewLevelPart() {
+        var levelGenerated = _mapGen.TryGenerateNew(_playerState.Distance, out var newLevel);
+        if (levelGenerated) {
+            _movingObjGen.HandleLevelGenerated(newLevel);
+        }
+    }
+
     private void Update() {
         if (Input.GetMouseButtonUp(1)) {
-            _movingObjGen.GenerateObject(_playerMovement.transform.localPosition);
+            _movingObjGen.GenerateObject(_playerMovement.transform.localPosition, MovingObject.Directions.Backward);
         }
         
         if (Input.GetMouseButtonUp(0)) {

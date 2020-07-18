@@ -157,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _templates:
   - {fileID: 0}
+  - {fileID: 8712299823899483212, guid: e6eb52845acbea547a3abe8c66dbb195, type: 3}
 --- !u!1 &5890600705708415098
 GameObject:
   m_ObjectHideFlags: 0
