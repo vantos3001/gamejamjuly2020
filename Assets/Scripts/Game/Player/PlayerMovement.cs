@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         _prevPosition = _rbody.position;
         _targetPosition = inputVector;
         
-        //_rbody.MovePosition(inputVector);
+        _isoRenderer.SetDirection(new Vector2(1, 0.5f));
         
         _timeSinceLastMove = 0;
 
@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate() {
         _timeSinceLastMove += Time.fixedDeltaTime;
         if (_rbody.position == _targetPosition) {
+            if (_timeSinceLastMove - MoveDuration >= 0.2f) {
+                _isoRenderer.SetDirection(Vector2.zero);
+            }
             return;
         }
         var time = _timeSinceLastMove / MoveDuration;
