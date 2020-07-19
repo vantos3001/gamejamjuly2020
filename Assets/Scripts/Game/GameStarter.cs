@@ -13,7 +13,7 @@ public class GameStarter : MonoBehaviour
         PlayerManager.Init();
         UIManager.Init();
         
-        LoadMenu();
+        Invoke("LoadMenu", 1.5f);
     }
 
     private void LoadMenu()
