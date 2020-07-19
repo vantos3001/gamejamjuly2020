@@ -809,7 +809,7 @@ PrefabInstance:
     - target: {fileID: 8515360226021721857, guid: 3c395de588af74840a396f0e5997e2c7,
         type: 3}
       propertyPath: _textPostfix
-      value: s
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c395de588af74840a396f0e5997e2c7, type: 3}
