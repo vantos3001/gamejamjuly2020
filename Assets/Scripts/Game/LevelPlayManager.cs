@@ -13,6 +13,7 @@ public class LevelPlayManager : MonoBehaviour {
     private readonly Dictionary<Operations, Func<bool>> _operationsByName = new Dictionary<Operations, Func<bool>>();
     private readonly Queue<Operations> _operationsQueue = new Queue<Operations>();
     private MovingObjectsGenerator _movingObjGen;
+    private MovingObject _lastCollisedObj;
 
     private enum Operations {
         Move
@@ -43,6 +44,8 @@ public class LevelPlayManager : MonoBehaviour {
     }
 
     private void Update() {
+        CheckPlayerCollision();
+        
         if (Input.GetMouseButtonUp(1)) {
             _movingObjGen.GenerateObject(_playerMovement.transform.localPosition, MovingObject.Directions.Backward);
         }
@@ -64,6 +67,26 @@ public class LevelPlayManager : MonoBehaviour {
 
         if (operation.Invoke()) {
             _operationsQueue.Dequeue();
+        }
+    }
+
+    private void CheckPlayerCollision() {
+        var debug = _playerMovement.CompareTag("Debug");
+        var playerTile = MovingObject.GetTile(_playerMovement.TargetPosition.x, _playerMovement.TargetPosition.y,
+            MovingObject.Directions.Forward, debug);
+        var collisedObj = _movingObjGen.GetObjectOnTile(playerTile);
+        if (collisedObj) {
+            if (collisedObj != _lastCollisedObj) {
+                Debug.Log("new player collision");
+                _lastCollisedObj = collisedObj;
+                _movingObjGen.Pause(_lastCollisedObj);
+            }
+        } else {
+            if (_lastCollisedObj is null) {
+                return;
+            }
+
+            _movingObjGen.Resume(_lastCollisedObj);
         }
     }
 

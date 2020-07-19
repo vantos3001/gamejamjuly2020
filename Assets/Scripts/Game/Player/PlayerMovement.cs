@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float MoveDuration = 0.45f;
     private Vector2 _targetPosition;
     private Vector2 _prevPosition;
+    public Vector3 TargetPosition => _targetPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
         _rbody = GetComponent<Rigidbody2D>();
         _isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
         _isoRenderer.SetDirection(new Vector2(1, 0.5f));
+        MoveTo(0);
     }
 
     public bool MoveTo(float position) {
