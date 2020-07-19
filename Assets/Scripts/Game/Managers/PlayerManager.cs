@@ -66,6 +66,7 @@ public static class PlayerManager
     {
         var health = _player.GetComponent<Health>();
         health.HealthEnded -= EndGame;
+        _playerData.CurrentCoins++;
 
         SceneManager.LoadScene("Menu");
     }
