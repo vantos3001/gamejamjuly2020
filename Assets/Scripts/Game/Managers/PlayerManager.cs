@@ -72,6 +72,11 @@ public static class PlayerManager
         health.HealthEnded -= EndGame;
         _playerData.CurrentCoins++;
 
+        var distance = LevelPlayManager._playerState.Distance;
+        var coinsForDistance = (int)((float) distance / (float) DataManager.GetGameplayConfig().CoinEveryDistance);
+        _playerData.CurrentCoins += coinsForDistance;
+        
+
         var isoRend = _player.GetComponentInChildren<IsometricCharacterRenderer>();
         isoRend.SetDeath();
     }

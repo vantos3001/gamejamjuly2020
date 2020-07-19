@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CarvalolFreezeTime: 7
   RestClickTimeDamage: 10
+  CoinEveryDistance: 3

@@ -8,7 +8,7 @@ public class LevelPlayManager : MonoBehaviour {
     public int OperationsQueueLimit = 2; 
     private PlayerMovement _playerMovement;
     private LevelMapGenerator _mapGen;
-    private readonly PlayerState _playerState = new PlayerState();
+    public  static readonly PlayerState _playerState = new PlayerState();
 
     private readonly Dictionary<Operations, Func<bool>> _operationsByName = new Dictionary<Operations, Func<bool>>();
     private readonly Queue<Operations> _operationsQueue = new Queue<Operations>();
@@ -22,7 +22,10 @@ public class LevelPlayManager : MonoBehaviour {
         Move
     }
 
-    private void Awake() {
+    private void Awake()
+    {
+        _playerState.Distance = 0;
+        
         _operationsByName.Add(Operations.Move, Move);
         _playerMovement = GetComponent<PlayerMovement>();
         _mapGen = GetComponent<LevelMapGenerator>();

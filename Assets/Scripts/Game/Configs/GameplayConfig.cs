@@ -7,4 +7,5 @@ public class GameplayConfig : ScriptableObject
 {
     public float CarvalolFreezeTime;
     public float RestClickTimeDamage;
+    public float CoinEveryDistance;
 }
