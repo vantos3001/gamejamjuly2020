@@ -8,6 +8,9 @@ public class Health : MonoBehaviour
     private float _currentHealth = 0;
     private float _currentDamagePerSecond;
 
+    private bool _isFreeze;
+    private float _timeBeforeUnfreeze;
+
     public Action HealthEnded;
 
     private float CurrentHealth
@@ -39,14 +42,27 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void FreezeDamagePerSecond()
+    public void FreezeDamagePerSecond(float unfreezeTime)
     {
         _currentDamagePerSecond = 0;
+        _isFreeze = true;
+        _timeBeforeUnfreeze = unfreezeTime;
     }
 
-    public void UnfreezeDamagePerSecond()
+    private void UnfreezeDamagePerSecond()
     {
         _currentDamagePerSecond = DEFAULT_DAMAGE_PER_SECOND;
+        _isFreeze = false;
+    }
+
+    private void UpdateFreeze(float delta)
+    {
+        _timeBeforeUnfreeze -= delta;
+
+        if (_timeBeforeUnfreeze <= 0)
+        {
+            UnfreezeDamagePerSecond();
+        }
     }
     
     private void Update()
@@ -58,6 +74,13 @@ public class Health : MonoBehaviour
             if (_currentHealth <= 0)
             {
                 Kill();
+            }
+            else
+            {
+                if (_isFreeze)
+                {
+                    UpdateFreeze(Time.deltaTime);
+                }
             }
         }
     }

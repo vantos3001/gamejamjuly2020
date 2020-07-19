@@ -7,6 +7,7 @@ public static class PlayerManager
     public static PlayerData PlayerData => _playerData;
 
     private static GameObject _player;
+    public static Health Health => _player.GetComponent<Health>();
     
     public static void Init()
     {
@@ -45,7 +46,7 @@ public static class PlayerManager
 
         if (_player != null)
         {
-            var health = _player.GetComponent<Health>();
+            var health = Health;
             health.HealthEnded += EndGame;
 
             health.Init(GetMaxHealth());
