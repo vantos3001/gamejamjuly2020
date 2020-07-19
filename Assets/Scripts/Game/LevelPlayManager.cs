@@ -14,6 +14,7 @@ public class LevelPlayManager : MonoBehaviour {
     private readonly Queue<Operations> _operationsQueue = new Queue<Operations>();
     private MovingObjectsGenerator _movingObjGen;
     private MovingObject _lastCollisedObj;
+    private int _activeOperationsCount;
 
     private enum Operations {
         Move
@@ -36,12 +37,21 @@ public class LevelPlayManager : MonoBehaviour {
             return false;
         }
         
-        var success = _playerMovement.MoveTo(_playerState.Distance + 1);
+        var success = _playerMovement.MoveTo(_playerState.Distance + 1, HandleOperationEnd);
         if (success) {
+            HandleOperationStart();
             _playerState.Distance++;
             TryGenerateNewLevelPart();
         }
         return success;
+    }
+
+    private void HandleOperationStart() {
+        _activeOperationsCount++;
+    }
+
+    private void HandleOperationEnd() {
+        _activeOperationsCount--;
     }
 
     private Vector2 ForwardTile() {
@@ -108,7 +118,7 @@ public class LevelPlayManager : MonoBehaviour {
     }
 
     private bool EnqueueOperation(Operations op) {
-        if (_operationsQueue.Count >= OperationsQueueLimit) {
+        if (_operationsQueue.Count + _activeOperationsCount >= OperationsQueueLimit) {
             return false;
         }
         

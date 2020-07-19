@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5615b5159da85845902fb4ede7973ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OperationsQueueLimit: 3
+  OperationsQueueLimit: 1
 --- !u!114 &7420704970440057773
 MonoBehaviour:
   m_ObjectHideFlags: 0
