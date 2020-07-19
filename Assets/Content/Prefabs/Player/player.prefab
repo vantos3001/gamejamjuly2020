@@ -130,7 +130,7 @@ MonoBehaviour:
   _levelTemplates:
   - {fileID: 2541637565481221169, guid: 1afbdd8e654b2594eb0a3dec51f90cbf, type: 3}
   - {fileID: 2541637565481221169, guid: 56fc8e0968638be47805b972a2b080c5, type: 3}
-  - {fileID: 2541637565481221169, guid: 81e5445fb77e4d44a94e78ef6f38e24b, type: 3}
+  - {fileID: 2541637565481221169, guid: 848caed461559bb4ab5ac5f27fc4cc2e, type: 3}
   TilesBuffer: 5
 --- !u!114 &3163441207267398822
 MonoBehaviour:
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _templates:
   - {fileID: 1441079316583032506, guid: 99a830854c0a7e743b229f4f8d72707f, type: 3}
+  DebugInstanceId: 0
 --- !u!114 &6926427396565210687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +231,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
