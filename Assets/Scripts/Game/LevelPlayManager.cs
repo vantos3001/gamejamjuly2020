@@ -50,7 +50,7 @@ public class LevelPlayManager : MonoBehaviour {
             _movingObjGen.GenerateObject(_playerMovement.transform.localPosition, MovingObject.Directions.Backward);
         }
         
-        if (Input.GetMouseButtonUp(0)) {
+        if (Input.GetMouseButtonDown(0)) {
             EnqueueOperation(Operations.Move);
         }
 

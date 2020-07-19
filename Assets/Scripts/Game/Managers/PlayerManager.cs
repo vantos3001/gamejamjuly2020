@@ -19,7 +19,7 @@ public static class PlayerManager
     {
         _playerData = new PlayerData();
         
-        var clickTimeAbility = new Ability(AbilityType.ClickTime);
+        var clickTimeAbility = new Ability(AbilityType.RestClickTime);
         var maxHealthAbility = new Ability(AbilityType.MaxHealth);
         
         _playerData.Abilities.Add(clickTimeAbility);
@@ -30,6 +30,11 @@ public static class PlayerManager
     {
         return _playerData.Abilities.Find(ab => ab.AbilityType == AbilityType.MaxHealth).Data.Value;
 
+    }
+
+    public static float GetRestClickTime()
+    {
+        return _playerData.Abilities.Find(ab => ab.AbilityType == AbilityType.RestClickTime).Data.Value;
     }
     
     private static void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
