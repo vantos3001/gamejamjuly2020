@@ -69,6 +69,11 @@ public class LevelPlayManager : MonoBehaviour {
             PlayerManager.Health.AddHealth(-DataManager.GetGameplayConfig().RestClickTimeDamage);
         }
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        PlayerManager.Health.Kill();
+    }
 
     private void HandleOperationStart() {
         _activeOperationsCount++;
