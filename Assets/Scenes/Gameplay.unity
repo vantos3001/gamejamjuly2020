@@ -200,11 +200,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3163441207267398822, guid: 4d51c830ce558364e84b8d5100ef0035,
-        type: 3}
-      propertyPath: OperationsQueueLimit
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5890600705133002659, guid: 4d51c830ce558364e84b8d5100ef0035,
         type: 3}
       propertyPath: m_Name
