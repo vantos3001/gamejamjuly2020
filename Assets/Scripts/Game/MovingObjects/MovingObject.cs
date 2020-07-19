@@ -10,7 +10,6 @@ namespace Game.MovingObjects {
         public int Width;
         public int Height;
         MovingObjectRenderer[] _renderers;
-        Rigidbody2D rbody;
         private Vector2 _direction;
         public int VisualIndex = -1;
         public Vector3 StartPosition { get; private set; }
@@ -38,7 +37,6 @@ namespace Game.MovingObjects {
 
         private void Awake()
         {
-            rbody = GetComponent<Rigidbody2D>();
             _renderers = GetComponentsInChildren<MovingObjectRenderer>();
             _directionsByName.TryGetValue(Directions.Left, out _direction);
         }
@@ -80,13 +78,13 @@ namespace Game.MovingObjects {
                 return;
             }
             
-            Vector3 currentPos = rbody.position;
+            Vector3 currentPos = transform.position;
             Vector3 inputVector = new Vector3(_direction.x, _direction.y, 0);
             //inputVector = Vector2.ClampMagnitude(inputVector, 1);
             Vector3 movement = inputVector * movementSpeed;
             Vector3 newPos = currentPos + movement * delta;
             SetRendererDirections(movement);
-            rbody.MovePosition(newPos);
+            transform.position = newPos;
         }
 
         private void SetRendererDirections(Vector2 movement) {

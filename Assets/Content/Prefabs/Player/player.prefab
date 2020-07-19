@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5890600704946563248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.03, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5890600706225254249}
@@ -51,7 +51,7 @@ GameObject:
   m_Layer: 0
   m_Name: player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -131,7 +131,7 @@ MonoBehaviour:
   - {fileID: 2541637565481221169, guid: 34578c2cc808dea4ebab4054d374e7d1, type: 3}
   - {fileID: 2541637565481221169, guid: 67b1c748e3118b046b656cfdd5a712bc, type: 3}
   - {fileID: 2541637565481221169, guid: fe17002e910002c45a2a8b83748a78b6, type: 3}
-  TilesBuffer: 50
+  TilesBuffer: 25
 --- !u!114 &3163441207267398822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,9 +158,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _templates:
-  - {fileID: 1441079316583032506, guid: 99a830854c0a7e743b229f4f8d72707f, type: 3}
+  - {fileID: 1441079316583032506, guid: 6a0d35c1bd0243d45b548704cb89cf02, type: 3}
+  - {fileID: 1525659102120455386, guid: 4b7ef26e177ba6b4cb80758225b92bf2, type: 3}
   DebugInstanceId: 0
-  LifeDurationInTiles: 100
+  LifeDurationInTiles: 50
 --- !u!114 &6926427396565210687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5890600706225254248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.021000005, y: 0.066, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5890600704946563249}
