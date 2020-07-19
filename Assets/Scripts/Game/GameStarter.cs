@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameStarter : MonoBehaviour
 {
+
+    [SerializeField] private GameObject Logo;
+    [SerializeField] private GameObject Gopnik;
     public void Awake()
     {
         Init();
@@ -13,7 +16,15 @@ public class GameStarter : MonoBehaviour
         PlayerManager.Init();
         UIManager.Init();
         
-        Invoke("LoadMenu", 1.5f);
+        Invoke("ShowGopnik", 1.5f);
+    }
+
+    private void ShowGopnik()
+    {
+        Logo.SetActive(false);
+        Gopnik.SetActive(true);
+        
+        Invoke("LoadMenu", 0.05f);
     }
 
     private void LoadMenu()
