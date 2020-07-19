@@ -7,7 +7,13 @@ using Utils.Pool;
 using Random = UnityEngine.Random;
 
 namespace Game.Map {
-    public class MovingObjectsGenerator : MonoBehaviour {
+    public class MovingObjectsGenerator : MonoBehaviour
+    {
+        private const float DEFAULT_SPEED = 7f;
+        private const float RANGE_SPEED = 2f;
+
+        private float _prevRandSpeed = 7f;
+        
         [SerializeField] private MovingObject[] _templates;
         private readonly List<MovingObjectSpawnPoint> _spawnPoints = new List<MovingObjectSpawnPoint>();
         public int DebugInstanceId;
@@ -36,10 +42,11 @@ namespace Game.Map {
             _parent.position = Vector2.zero;
         }
 
-        public void GenerateObject(Vector3 position, MovingObject.Directions direction) {
+        public void GenerateObject(Vector3 position, MovingObject.Directions direction, float movementSpeed) {
             var index = Random.Range(0, _templates.Length);
             var newObj = _pool.Get(index, true, _templates, index, _parent);
             var newDirection = direction;
+            newObj.movementSpeed = movementSpeed;
             newObj.StartMoving(newDirection);
             newObj.transform.transform.position = position;
             newObj.VisualIndex = index;
@@ -64,6 +71,29 @@ namespace Game.Map {
             return null;
         }
 
+        private float RandSpeed()
+        {
+            float speed = 0f;
+            var randTry = 0;
+            while (randTry < 100)
+            {
+                var range = Random.Range(-RANGE_SPEED, RANGE_SPEED);
+
+                speed = DEFAULT_SPEED + range;
+
+                if (Math.Abs(speed - _prevRandSpeed) > 0.001)
+                {
+                    break;
+                }
+                
+                randTry++;
+            }
+
+            _prevRandSpeed = speed;
+            
+            return speed;
+        }
+
         private void Update() {
             if (_paused) {
                 return;
@@ -72,7 +102,11 @@ namespace Game.Map {
             foreach (var spawnPoint in _spawnPoints) {
                 spawnPoint.TimeSinceLastSpawn += Time.deltaTime;
                 if (spawnPoint.TimeSinceLastSpawn > spawnPoint.SpawnInterval) {
-                    GenerateObject(spawnPoint.transform.position, spawnPoint.Direction);
+                    if (spawnPoint.MovementSpeed <= 0)
+                    {
+                        spawnPoint.MovementSpeed = RandSpeed();
+                    }
+                    GenerateObject(spawnPoint.transform.position, spawnPoint.Direction, spawnPoint.MovementSpeed);
                     spawnPoint.TimeSinceLastSpawn = 0;
                 }
             }

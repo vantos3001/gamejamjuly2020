@@ -5,4 +5,6 @@ public class MovingObjectSpawnPoint : MonoBehaviour {
     public float SpawnInterval = 3f;
     public float TimeSinceLastSpawn = 0;
     public MovingObject.Directions Direction;
+
+    public float MovementSpeed = -1;
 }
