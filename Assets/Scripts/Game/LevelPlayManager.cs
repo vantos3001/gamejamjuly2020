@@ -41,6 +41,7 @@ public class LevelPlayManager : MonoBehaviour {
         if (success) {
             HandleOperationStart();
             _playerState.Distance++;
+            EventManager.OnDistanceChanged(_playerState.Distance);
             TryGenerateNewLevelPart();
         }
         return success;
