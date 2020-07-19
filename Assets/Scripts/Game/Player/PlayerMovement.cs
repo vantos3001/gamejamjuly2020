@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rbody = GetComponent<Rigidbody2D>();
         _isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
-        _isoRenderer.SetDirection(new Vector2(1, 0.5f));
+        _isoRenderer.SetDirection(Vector2.zero);
         MoveTo(0);
     }
 
