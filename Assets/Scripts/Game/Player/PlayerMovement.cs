@@ -42,11 +42,6 @@ public class PlayerMovement : MonoBehaviour
         return true;
     }
 
-    public void SetDeath()
-    {
-        _isoRenderer.SetDeath();
-    }
-
     public void Rest()
     {
         _isoRenderer.SetRest();
@@ -57,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
+        if (_isoRenderer.IsometricType == IsometricType.Death)
+        {
+            return;
+        }
+        
         _timeSinceLastMove += Time.fixedDeltaTime;
         if (_rbody.position == _targetPosition) {
             if (_moving && _timeSinceLastMove - MoveDuration >= 0.2f) {

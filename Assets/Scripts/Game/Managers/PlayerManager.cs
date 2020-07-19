@@ -70,7 +70,10 @@ public static class PlayerManager
 
         var isoRend = _player.GetComponentInChildren<IsometricCharacterRenderer>();
         isoRend.SetDeath();
+    }
 
+    public static void LoadMenu()
+    {
         SceneManager.LoadScene("Menu");
     }
 }

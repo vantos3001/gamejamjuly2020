@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum IsometricType
 {
@@ -25,10 +23,10 @@ public class IsometricCharacterRenderer : MonoBehaviour
     int lastDirection;
 
     private IsometricType _isometricType = IsometricType.Idle;
+    public IsometricType IsometricType => _isometricType;
 
     private void Awake()
     {
-        //cache the animator component
         animator = GetComponent<Animator>();
     }
 
@@ -38,12 +36,19 @@ public class IsometricCharacterRenderer : MonoBehaviour
         {
             animator.Play(DEATH_ANIM);
             _isometricType = IsometricType.Death;
+            
+            Invoke("OnDeath", 1.2f);
         }
+    }
+
+    private void OnDeath()
+    {
+        PlayerManager.LoadMenu();
     }
 
     public void SetRest()
     {
-        if (_isometricType != IsometricType.Rest)
+        if (_isometricType != IsometricType.Rest && _isometricType != IsometricType.Death)
         {
             animator.Play(REST_ANIM);
             _isometricType = IsometricType.Rest;
@@ -63,6 +68,11 @@ public class IsometricCharacterRenderer : MonoBehaviour
 
     public void SetDirection(Vector2 direction)
     {
+        if (_isometricType == IsometricType.Death)
+        {
+            return;
+        }
+        
         //use the Run states by default
         string[] directionArray = null;
 
