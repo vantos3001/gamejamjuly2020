@@ -28,15 +28,18 @@ public class GameCanvas : MonoBehaviour
 
     private void OnRestClickTimeChanged(float restClickTime)
     {
-        if (restClickTime <= 0 || PlayerManager.Health.IsFreeze)
-        {
-            _restPanel.gameObject.SetActive(false);
-        }
-        else
-        {
-            _restPanel.gameObject.SetActive(true);
-            _restPanel.SetText("Rest: " + restClickTime.ToString("0.0") +  "s");
-        }
+        
+        // if (restClickTime <= 0 || PlayerManager.Health.IsFreeze)
+        // {
+        //     _restPanel.gameObject.SetActive(false);
+        // }
+        // else
+        // {
+        //     _restPanel.gameObject.SetActive(true);
+        //     _restPanel.SetText("Rest: " + restClickTime.ToString("0.0") +  "s");
+        // }
+        
+        _restPanel.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
