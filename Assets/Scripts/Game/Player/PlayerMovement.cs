@@ -13,12 +13,11 @@ public class PlayerMovement : MonoBehaviour
     private bool _moving;
     public Vector2 TargetPosition => _targetPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
         _isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
-        _isoRenderer.SetDirection(new Vector2(1, 0.5f));
+        _isoRenderer.SetDirection(Vector2.zero);
         MoveTo(0);
     }
 
@@ -41,6 +40,16 @@ public class PlayerMovement : MonoBehaviour
         _timeSinceLastMove = 0;
 
         return true;
+    }
+
+    public void SetDeath()
+    {
+        _isoRenderer.SetDeath();
+    }
+
+    public void Rest()
+    {
+        _isoRenderer.SetRest();
     }
 
     private bool IsMoveCooldown() {

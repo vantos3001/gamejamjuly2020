@@ -9,6 +9,8 @@ public class Health : MonoBehaviour
     private float _currentDamagePerSecond;
 
     private bool _isFreeze;
+    public bool IsFreeze => _isFreeze;
+
     private float _timeBeforeUnfreeze;
 
     public Action HealthEnded;
