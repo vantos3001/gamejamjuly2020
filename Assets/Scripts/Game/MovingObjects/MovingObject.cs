@@ -43,11 +43,11 @@ namespace Game.MovingObjects {
 
         void FixedUpdate()
         {
-            Vector2 currentPos = rbody.position;
-            Vector2 inputVector = _direction;
-            inputVector = Vector2.ClampMagnitude(inputVector, 1);
-            Vector2 movement = inputVector * movementSpeed;
-            Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+            Vector3 currentPos = rbody.position;
+            Vector3 inputVector = new Vector3(_direction.x, _direction.y, 0);
+            //inputVector = Vector2.ClampMagnitude(inputVector, 1);
+            Vector3 movement = inputVector * movementSpeed;
+            Vector3 newPos = currentPos + movement * Time.fixedDeltaTime;
             SetRendererDirections(movement);
             rbody.MovePosition(newPos);
         }
@@ -62,12 +62,6 @@ namespace Game.MovingObjects {
             var x = (int) (target.position.x / 0.5f) * 0.5f;
             var y = (int) (target.position.y / 0.25f) * 0.25f;
             target.position = new Vector3(x, y, 0);
-        }
-
-        public static float SnapToClosest(float value, float a, float b) {
-            var deltaA = Mathf.Abs(a - value);
-            var deltaB = Mathf.Abs(b - value);
-            return a < b ? a : b;
         }
     }
 }

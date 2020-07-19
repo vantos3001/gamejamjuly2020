@@ -23,7 +23,8 @@ namespace Game.Map {
             var newObj = Instantiate(_templates.ElementAt(randomIndex), _parent);
             var newDirection = direction;
             newObj.SetDirection(newDirection);
-            newObj.transform.localPosition = position;
+            newObj.transform.transform.position = position;
+            MovingObject.SnapPosition(newObj.transform);
         }
 
         private void Update() {
