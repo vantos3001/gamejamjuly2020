@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelMapGenerator : MonoBehaviour {
     [SerializeField] private MapLevel[] _levelTemplates;
@@ -8,10 +10,16 @@ public class LevelMapGenerator : MonoBehaviour {
     
     private readonly List<MapLevel> _levels = new List<MapLevel>();
     private int _distance;
+    private Transform _parent;
+
+    private void Awake() {
+        _parent = new GameObject("level parts").transform;
+        _parent.position = Vector2.zero;
+    }
 
     public MapLevel GenerateNew() {
         var randomIndex = Random.Range(0, _levelTemplates.Length);
-        var newLevel = Instantiate(_levelTemplates.ElementAt(randomIndex));
+        var newLevel = Instantiate(_levelTemplates.ElementAt(randomIndex), _parent);
         var lastLevel = _levels.LastOrDefault();
         _levels.Add(newLevel);
         _distance += newLevel.GetSize().x;
