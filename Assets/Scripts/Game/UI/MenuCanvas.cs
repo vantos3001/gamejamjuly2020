@@ -6,14 +6,17 @@ using UnityEngine.UI;
 public class MenuCanvas : MonoBehaviour
 {
     [SerializeField] private TextPanel _coinPanel;
-
     [SerializeField] private Button _playButton;
-
+    [SerializeField] private Button _infinitePlayButton;
     [SerializeField] private List<AbilityPanel> _abilityPanels;
 
     private void Awake()
     {
         _playButton.onClick.AddListener(OnPlayButton);
+#if  !UNITY_EDITOR
+                _infinitePlayButton.gameObject.SetActive(false);
+#endif
+        _infinitePlayButton.onClick.AddListener(OnInfinitePlayButton);
     }
 
     public void SetCoinPanel(string text)
@@ -35,8 +38,17 @@ public class MenuCanvas : MonoBehaviour
         }
     }
 
-    private void OnPlayButton()
-    {
+    private void OnPlayButton() {
+        PlayerManager.InfiniteMode = false;
+        StartPlay();
+    }
+    
+    private void OnInfinitePlayButton() {
+        PlayerManager.InfiniteMode = true;
+        StartPlay();
+    }
+
+    private void StartPlay() {
         SceneManager.LoadScene("Gameplay");
     }
 

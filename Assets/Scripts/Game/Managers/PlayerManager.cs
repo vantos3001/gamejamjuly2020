@@ -8,7 +8,8 @@ public static class PlayerManager
 
     private static GameObject _player;
     public static Health Health => _player.GetComponent<Health>();
-    
+    public static bool InfiniteMode = false;
+
     public static void Init()
     {
         CreatePlayer();
@@ -64,6 +65,9 @@ public static class PlayerManager
 
     private static void EndGame()
     {
+        if (InfiniteMode) {
+            return;
+        }
         var health = _player.GetComponent<Health>();
         health.HealthEnded -= EndGame;
         _playerData.CurrentCoins++;
