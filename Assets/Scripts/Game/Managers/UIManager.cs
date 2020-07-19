@@ -18,6 +18,21 @@ public static class UIManager
         }
     }
 
+    private static GameCanvas _gameCanvas;
+
+    public static GameCanvas GameCanvas
+    {
+        get
+        {
+            if (_gameCanvas == null)
+            {
+                _gameCanvas = GameObject.FindWithTag("GameCanvas").GetComponent<GameCanvas>();
+            }
+
+            return _gameCanvas;
+        }
+    }
+
     public static void Init()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -29,6 +44,11 @@ public static class UIManager
         if (scene.name == "Menu")
         {
             UpdateMenu();
+        }
+        
+        if (scene.name == "Gameplay")
+        {
+            UpdateGameplay();
         }
     }
 
@@ -59,5 +79,10 @@ public static class UIManager
     private static void UpdateAbilityPanel(Ability ability)
     {
         MenuCanvas.SetAbilityPanel(ability);
+    }
+
+    private static void UpdateGameplay()
+    {
+        
     }
 }
