@@ -16,6 +16,8 @@ public class LevelPlayManager : MonoBehaviour {
     private MovingObject _lastCollisedObj;
     private int _activeOperationsCount;
 
+    private float _currentRestClickTime;
+
     private enum Operations {
         Move
     }
@@ -42,9 +44,26 @@ public class LevelPlayManager : MonoBehaviour {
             HandleOperationStart();
             _playerState.Distance++;
             EventManager.OnDistanceChanged(_playerState.Distance);
+            CheckRestClickTime();
+            _currentRestClickTime = PlayerManager.GetRestClickTime();
             TryGenerateNewLevelPart();
         }
         return success;
+    }
+
+    private void UpdateRestClickTime(float delta)
+    {
+        
+        _currentRestClickTime -= delta;
+        EventManager.NotifyOnOnRestClickTimeChanged(_currentRestClickTime);
+    }
+
+    private void CheckRestClickTime()
+    {
+        if (0 < _currentRestClickTime)
+        {
+            PlayerManager.Health.AddHealth(-DataManager.GetGameplayConfig().RestClickTimeDamage);
+        }
     }
 
     private void HandleOperationStart() {
@@ -80,6 +99,11 @@ public class LevelPlayManager : MonoBehaviour {
         
         if (Input.GetMouseButtonDown(0)) {
             EnqueueOperation(Operations.Move);
+        }
+
+        if (!PlayerManager.Health.IsFreeze)
+        {
+            UpdateRestClickTime(Time.deltaTime);
         }
 
         if (_operationsQueue.Count == 0) {

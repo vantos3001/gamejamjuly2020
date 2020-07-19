@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685502e70edd8f6499394d92b6929834, type: 3}
   m_Name: GameplayConfig
   m_EditorClassIdentifier: 
-  CarvalolFreezeTime: 0
+  CarvalolFreezeTime: 3
+  RestClickTimeDamage: 10

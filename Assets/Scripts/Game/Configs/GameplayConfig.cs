@@ -6,4 +6,5 @@ using UnityEngine;
 public class GameplayConfig : ScriptableObject
 {
     public float CarvalolFreezeTime;
+    public float RestClickTimeDamage;
 }
