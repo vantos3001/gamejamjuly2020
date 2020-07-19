@@ -146,7 +146,7 @@ namespace Game.MovingObjects {
             Vector2[] tiles = new Vector2[w * h];
             for (int i = 0; i < w; i++) {
                 for (int j = 0; j < h; j++) {
-                    var tile = GetTile(posX + TileX * i, posY + TileY * i, directionKey, debug);
+                    var tile = GetTile(posX + TileX * i, posY + -TileY * i, directionKey, debug);
                     tiles[i + (i + 1) * j] = tile;
                 }
             }

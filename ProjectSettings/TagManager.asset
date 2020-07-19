@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MenuCanvas
   - GameCanvas
+  - Debug
   layers:
   - Default
   - TransparentFX
