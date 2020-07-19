@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class PlayerData
 {
-    public int CurrentCoin = 0;
+    public int CurrentCoins = 0;
     public List<Ability> Abilities = new List<Ability>();
 }
