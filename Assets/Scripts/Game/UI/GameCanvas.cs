@@ -23,7 +23,7 @@ public class GameCanvas : MonoBehaviour
 
     private void OnDistanceChanged(float distance)
     {
-        _distancePanel.SetText("Distance: " + distance);
+        _distancePanel.SetText(distance.ToString());
     }
 
     private void OnRestClickTimeChanged(float restClickTime)
