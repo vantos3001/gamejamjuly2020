@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum IsometricType
+{
+    Move,
+    Death,
+    Rest,
+    Idle
+}
 
 public class IsometricCharacterRenderer : MonoBehaviour
 {
@@ -17,6 +24,8 @@ public class IsometricCharacterRenderer : MonoBehaviour
     Animator animator;
     int lastDirection;
 
+    private IsometricType _isometricType = IsometricType.Idle;
+
     private void Awake()
     {
         //cache the animator component
@@ -25,12 +34,30 @@ public class IsometricCharacterRenderer : MonoBehaviour
 
     public void SetDeath()
     {
-        animator.Play(DEATH_ANIM);
+        if (_isometricType != IsometricType.Death)
+        {
+            animator.Play(DEATH_ANIM);
+            _isometricType = IsometricType.Death;
+        }
     }
 
     public void SetRest()
     {
-        animator.Play(REST_ANIM);
+        if (_isometricType != IsometricType.Rest)
+        {
+            animator.Play(REST_ANIM);
+            _isometricType = IsometricType.Rest;
+            EventManager.OnRestClickTimeChanged += CheckRest;
+        }
+    }
+
+    private void CheckRest(float restTimer)
+    {
+        if (restTimer <= 0)
+        {
+            EventManager.OnRestClickTimeChanged -= CheckRest;
+            SetDirection(Vector2.zero);
+        }
     }
 
 
@@ -45,6 +72,7 @@ public class IsometricCharacterRenderer : MonoBehaviour
             //if we are basically standing still, we'll use the Static states
             //we won't be able to calculate a direction if the user isn't pressing one, anyway!
             directionArray = staticDirections;
+            _isometricType = IsometricType.Idle;
         }
         else
         {
@@ -52,6 +80,7 @@ public class IsometricCharacterRenderer : MonoBehaviour
             //use DirectionToIndex to get the index of the slice from the direction vector
             //save the answer to lastDirection
             directionArray = runDirections;
+            _isometricType = IsometricType.Move;
             lastDirection = DirectionToIndex(direction, 8);
         }
 

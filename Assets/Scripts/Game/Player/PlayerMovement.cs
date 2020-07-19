@@ -42,6 +42,16 @@ public class PlayerMovement : MonoBehaviour
         return true;
     }
 
+    public void SetDeath()
+    {
+        _isoRenderer.SetDeath();
+    }
+
+    public void Rest()
+    {
+        _isoRenderer.SetRest();
+    }
+
     private bool IsMoveCooldown() {
         return _timeSinceLastMove < MoveDuration;
     }

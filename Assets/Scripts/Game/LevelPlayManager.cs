@@ -72,6 +72,7 @@ public class LevelPlayManager : MonoBehaviour {
 
     private void HandleOperationEnd() {
         _activeOperationsCount--;
+        _playerMovement.Rest();
     }
 
     private Vector2 ForwardTile() {

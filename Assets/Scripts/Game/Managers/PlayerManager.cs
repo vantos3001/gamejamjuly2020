@@ -68,6 +68,9 @@ public static class PlayerManager
         health.HealthEnded -= EndGame;
         _playerData.CurrentCoins++;
 
+        var isoRend = _player.GetComponentInChildren<IsometricCharacterRenderer>();
+        isoRend.SetDeath();
+
         SceneManager.LoadScene("Menu");
     }
 }
