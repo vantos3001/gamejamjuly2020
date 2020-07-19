@@ -128,9 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelTemplates:
-  - {fileID: 2541637565481221169, guid: 1afbdd8e654b2594eb0a3dec51f90cbf, type: 3}
-  - {fileID: 2541637565481221169, guid: 56fc8e0968638be47805b972a2b080c5, type: 3}
-  - {fileID: 2541637565481221169, guid: 848caed461559bb4ab5ac5f27fc4cc2e, type: 3}
+  - {fileID: 2541637565481221169, guid: 34578c2cc808dea4ebab4054d374e7d1, type: 3}
   TilesBuffer: 50
 --- !u!114 &3163441207267398822
 MonoBehaviour:
