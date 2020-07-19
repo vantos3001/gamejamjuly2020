@@ -21,7 +21,7 @@ public class MenuCanvas : MonoBehaviour
 
     public void SetCoinPanel(string text)
     {
-        _coinPanel.SetText("Coins: " + text);
+        _coinPanel.SetText(text);
     }
 
     public void SetAbilityPanel(Ability ability)
