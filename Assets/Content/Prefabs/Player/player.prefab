@@ -131,7 +131,7 @@ MonoBehaviour:
   - {fileID: 2541637565481221169, guid: 1afbdd8e654b2594eb0a3dec51f90cbf, type: 3}
   - {fileID: 2541637565481221169, guid: 56fc8e0968638be47805b972a2b080c5, type: 3}
   - {fileID: 2541637565481221169, guid: 848caed461559bb4ab5ac5f27fc4cc2e, type: 3}
-  TilesBuffer: 5
+  TilesBuffer: 50
 --- !u!114 &3163441207267398822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   _templates:
   - {fileID: 1441079316583032506, guid: 99a830854c0a7e743b229f4f8d72707f, type: 3}
   DebugInstanceId: 0
+  LifeDurationInTiles: 100
 --- !u!114 &6926427396565210687
 MonoBehaviour:
   m_ObjectHideFlags: 0

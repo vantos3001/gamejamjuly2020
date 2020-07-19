@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class LevelMapGenerator : MonoBehaviour {
     [SerializeField] private MapLevel[] _levelTemplates;
-    public int TilesBuffer = 5;
+    public int TilesBuffer = 10;
     
     private readonly List<MapLevel> _levels = new List<MapLevel>();
     private int _distance;

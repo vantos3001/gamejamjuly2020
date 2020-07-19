@@ -26,6 +26,7 @@ public class LevelPlayManager : MonoBehaviour {
         _mapGen = GetComponent<LevelMapGenerator>();
         _movingObjGen = GetComponent<MovingObjectsGenerator>();
         _movingObjGen.SetPlayerTarget(_playerMovement.transform);
+        TryGenerateNewLevelPart();
     }
 
     private bool Move() {
@@ -67,6 +68,7 @@ public class LevelPlayManager : MonoBehaviour {
         var levelGenerated = _mapGen.TryGenerateNew(_playerState.Distance, out var newLevel);
         if (levelGenerated) {
             _movingObjGen.HandleLevelGenerated(newLevel);
+            TryGenerateNewLevelPart();
         }
     }
 

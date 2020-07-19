@@ -10,9 +10,10 @@ namespace Game.Map {
     public class MovingObjectsGenerator : MonoBehaviour {
         [SerializeField] private MovingObject[] _templates;
         private readonly List<MovingObjectSpawnPoint> _spawnPoints = new List<MovingObjectSpawnPoint>();
+        public int DebugInstanceId;
+        public int LifeDurationInTiles = 100;
         private Transform _playerTarget;
         private Transform _parent;
-        public int DebugInstanceId;
 
         private readonly ComplexComponentObjectPool<int, MovingObject> _pool =
             new ComplexComponentObjectPool<int, MovingObject>(Constructor);
@@ -78,7 +79,7 @@ namespace Game.Map {
             
             foreach (var mO in _movingObjects) {
                 mO.UpdateMovement(Time.fixedDeltaTime);
-                if (mO.TilesPassed() >= 50) {
+                if (mO.TilesPassed() >= LifeDurationInTiles) {
                     _pool.Release(mO, mO.VisualIndex);
                 } else {
                     _movingObjectsCopy.Add(mO);
