@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     private bool _moving;
     public Vector2 TargetPosition => _targetPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         _rbody = GetComponent<Rigidbody2D>();
