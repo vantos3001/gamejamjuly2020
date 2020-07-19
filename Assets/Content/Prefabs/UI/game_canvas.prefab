@@ -596,7 +596,7 @@ PrefabInstance:
     - target: {fileID: 55454528835336292, guid: 8766fc68203947a40bd829990e1568c9,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 55454528835336292, guid: 8766fc68203947a40bd829990e1568c9,
         type: 3}
@@ -617,6 +617,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: health_bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838697073378402119, guid: 8766fc68203947a40bd829990e1568c9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838697073378402119, guid: 8766fc68203947a40bd829990e1568c9,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159479171594091525, guid: 8766fc68203947a40bd829990e1568c9,
         type: 3}
