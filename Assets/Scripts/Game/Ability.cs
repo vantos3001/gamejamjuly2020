@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum AbilityType
 {
-    ClickTime,
+    RestClickTime,
     MaxHealth
 }
 public class Ability
