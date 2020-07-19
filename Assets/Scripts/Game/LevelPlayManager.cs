@@ -96,10 +96,6 @@ public class LevelPlayManager : MonoBehaviour {
     private void Update() {
         CheckPlayerCollision();
         
-        if (Input.GetMouseButtonUp(1)) {
-            _movingObjGen.GenerateObject(_playerMovement.transform.localPosition, MovingObject.Directions.Backward);
-        }
-        
         if (Input.GetMouseButtonDown(0)) {
             EnqueueOperation(Operations.Move);
         }
