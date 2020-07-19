@@ -24,6 +24,12 @@ public static class PlayerManager
         _playerData.Abilities.Add(clickTimeAbility);
         _playerData.Abilities.Add(maxHealthAbility);
     }
+
+    public static float GetMaxHealth()
+    {
+        return _playerData.Abilities.Find(ab => ab.AbilityType == AbilityType.MaxHealth).Data.Value;
+
+    }
     
     private static void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
@@ -42,8 +48,7 @@ public static class PlayerManager
             var health = _player.GetComponent<Health>();
             health.HealthEnded += EndGame;
 
-            var maxHealth = _playerData.Abilities.Find(ab => ab.AbilityType == AbilityType.MaxHealth);
-            health.Init(maxHealth.Data.Value);
+            health.Init(GetMaxHealth());
         }
         else
         {
