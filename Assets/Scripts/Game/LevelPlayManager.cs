@@ -28,12 +28,29 @@ public class LevelPlayManager : MonoBehaviour {
     }
 
     private bool Move() {
+        var nextTile = ForwardTile();
+        var collisedObj = _movingObjGen.GetObjectOnTile(nextTile);
+        var pathIsClear = collisedObj is null;
+
+        if (!pathIsClear) {
+            return false;
+        }
+        
         var success = _playerMovement.MoveTo(_playerState.Distance + 1);
         if (success) {
             _playerState.Distance++;
             TryGenerateNewLevelPart();
         }
         return success;
+    }
+
+    private Vector2 ForwardTile() {
+        MovingObject.GetDirectionByName(MovingObject.Directions.Forward, out var delta);
+        var fPos = _playerMovement.TargetPosition + delta;
+        var result =MovingObject.GetTile(fPos.x, fPos.y,
+            MovingObject.Directions.Forward);
+
+        return result;
     }
 
     private void TryGenerateNewLevelPart() {

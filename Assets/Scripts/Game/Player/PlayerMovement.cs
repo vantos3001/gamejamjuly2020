@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float MoveDuration = 0.45f;
     private Vector2 _targetPosition;
     private Vector2 _prevPosition;
-    public Vector3 TargetPosition => _targetPosition;
+    public Vector2 TargetPosition => _targetPosition;
 
     // Start is called before the first frame update
     void Start()
